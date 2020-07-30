@@ -1,0 +1,13 @@
+parameters:
+  resource: ["commands/publish", "templates/mock", "templates/tito"]
+  from: "latest"
+  to: ["test", "stable"]
+
+jobs:
+  main:
+    requires: [~pr, ~commit]
+    image: node:12
+    steps:
+      - show1: 'echo "Region: $(meta get parameters.resource.value)"'
+      - show2: 'echo "Region: $(meta get parameters.from.value)"'
+      - show3: 'echo "Region: $(meta get parameters.to.value)"'
